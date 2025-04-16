@@ -1,5 +1,14 @@
-The **DocuSign Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It allows workflows to automatically generate and send signing envelopes to one or more recipients. Once all designated signers complete the signing process, the signed document is returned to the addon, which then attaches it to the originating workflow and updates a workflow variable to indicate completion.
+# DocuSign Addon for Itiner Workspace
 
-This integration supports multiple simultaneous signers. All signer email addresses must be predefined in the workflow through dedicated variables. Additionally, the service supports tagging of the signed document using a workflow variable. When the signed document is returned, the value of the `digitalSignAttachmentTag` variable will be applied as a tag to the attached file.
+## Overview
+The **DocuSign Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It enables workflows to automatically generate and manage digital signatures, streamlining the document signing process.
 
-The service ensures seamless, automated management of the digital signing lifecycle within Itiner Workspace.
+This integration supports:
+- Multiple simultaneous signers.
+- Automated management of the signing lifecycle.
+- Tagging of signed documents for easy tracking.
+
+## Features
+- **Multi-Signer Support**: Allows workflows to include multiple predefined signers.
+- **Seamless Integration**: Handles the full lifecycle of digital signing within Itiner Workspace.
+- **Custom Tagging**: Attach tags to signed documents for organization and workflow tracking.
