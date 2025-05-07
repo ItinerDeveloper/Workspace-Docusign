@@ -9,26 +9,31 @@
   `/docusignintegration/consent`
 
 ## Description
-The **DocuSign SES Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It allows workflows to automatically generate and send signing envelopes to one or more recipients. Once all designated signers complete the signing process, the signed document is returned to the addon, which then attaches it to the originating workflow and updates a workflow variable to indicate completion.
+The **DocuSign SES Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It allows workflows to automatically generate and send signing envelopes to one or more recipients. Once all designated signers complete the signing process, the signed document is returned to the addon, which then attaches it to the originating workflow and updates a workflow variable with the envelope's status.
 
-This integration supports multiple simultaneous signers. All signer email addresses must be predefined in the workflow through dedicated variables. Additionally, the service supports tagging of the signed document using a workflow variable. When the signed document is returned, the value of the `digitalSignAttachmentTag` variable will be applied as a tag to the attached file.
+This integration supports multiple simultaneous signers. All signer email addresses must be predefined in the workflow through dedicated variables. Additionally, the service supports:
+- **Tagging**: The signed document can be tagged using a value from the `digitalSignAttachmentTag` variable.
+- **Custom Email Messages**: Users can specify a message that will appear in the email sent to the signers using the `digitalSignEmailBody` variable.
 
 The service ensures seamless, automated management of the digital signing lifecycle within Itiner Workspace.
 
 ### Signing Workflow:
-1. The user uploads a document, and sends it to the DocuSign integration addon via an Export task, along with the signer data.
+1. The user uploads a document and sends it to the DocuSign integration addon via an Export task, along with the signer data.
 2. The addon creates an envelope and sends it to DocuSign.
 3. DocuSign distributes the envelope to all signers **simultaneously**.
 4. Once all signers have signed the document:
    - DocuSign returns the signed document to the addon.
    - The signed document is attached to the original workflow.
    - If the `digitalSignAttachmentTag` variable is set, its value is applied as a tag to the attached signed document.
-   - The `digitalSignResult` variable is updated to `"true"` in the workflow to indicate completion.
+   - The `digitalSignResult` variable is updated to reflect the envelope's current status (e.g., `"envelope-completed"`, `"envelope-deleted"`).
+
+You can find the full list of possible envelope event types in the [DocuSign Connect Event Triggers documentation](https://developers.docusign.com/platform/webhooks/connect/event-triggers/).
 
 ## Dedicated Template Variables
 - **digitalSignerEmail[1-9]**: Email addresses of the signers (e.g., `digitalSignerEmail1`, `digitalSignerEmail2`, etc. If there is only one signer then `digitalSignerEmail` can be used as well, without the numbering.). 
-- **digitalSignResult**: Boolean-like string variable set to `"true"` when the document is fully signed and returned.
+- **digitalSignResult**: A string variable updated to reflect the current status of the envelope as reported by DocuSign (e.g., `"envelope-completed"`, `"envelope-deleted"`).
 - **digitalSignAttachmentTag**: The value of this variable is added as a tag to the signed document when it is attached to the workflow.
+- **digitalSignEmailBody**: The custom message that will appear in the email sent to signers via DocuSign.
 
 ---
 
