@@ -100,6 +100,22 @@ In `Integrations > Connect`:
 ### 5.1 `appsettings.json`
 Edit the `appsettings.json` file in the `DocusignIntegration` folder with the following structure:
 
+#### Host Configuration
+```json
+"Host": {
+  "WebHostUrl": "https://addonhostdnsname/workspace/docusignintegration",
+  "WSUrl": "http://workspacehostdnsname/workspace/api",
+  "WsApiKey": "test", // API key generated for integration user
+  "HealthCheckBaseUrl": "http://addonhostdnsname", // optional
+  "CustomApiKey": "test",
+  "PathBase": "/workspace/docusignintegration",
+  "DebugMode": false,
+  "DisableRequestLog": false,
+  "DisableMetadata": true
+  },
+```
+
+#### Docusign Configuration
 ```json
 "DocuSign": {
 "ClientId": "Integration Key assigned by DocuSign",
@@ -109,7 +125,7 @@ Edit the `appsettings.json` file in the `DocusignIntegration` folder with the fo
 },
 "Hmac": {
 "Secret": "HMAC Connect Key secret from DocuSign" // This key must be used as a secret key for the Itiner Workspace Webhook Connection.
-}
+},
 ```
 
 - **ClientId**: DocuSign Integration Key  
@@ -126,6 +142,60 @@ Edit the `appsettings.json` file in the `DocusignIntegration` folder with the fo
 
 - **Hmac.Secret**: Secret from the HMAC Connect Key created in DocuSign  
   This secret is used to validate the authenticity of incoming callback requests from DocuSign’s Connect service.
+
+#### Reference Filter Configuration
+- **Purpose**: Controls which events the integration service processes based on the `Reference` value in the event.
+- **Behavior**:
+  - If the `Filter` list is **not empty**, the integration service will **only process events** that contain a reference included in the `Filter` list.
+  - If the `Filter` list is **empty**, the service will process **all events**, regardless of their `Reference` value.
+- **Usage**: Populate the `Filter` list with user-defined keys to restrict the scope of processed events.
+
+```json
+"Reference": {
+  "Filter": ["Email"]
+},
+```
+
+#### Logging (Serilog) Configuration
+```json
+"Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning",
+            "Microsoft.Hosting.Lifetime": "Information"
+        }
+    },
+"Serilog": {
+    "LevelSwitches": {
+        "$controlSwitch": "Information"
+    },
+    "MinimumLevel": {
+        "ControlledBy": "$controlSwitch",
+        "Override": {
+            "System": "Warning",
+            "Microsoft": "Error",
+            "ServiceStack.Host.Handlers": "Error"
+        }
+    },
+    "Enrich": ["FromLogContext", "WithMachineName", "WithThreadId"],
+    "Properties": {
+        "Application": "DocuSignIntegration"
+        ,"HostURL": "https://workspacehostdnsname.com"
+    },
+
+    // Seq 
+    "WriteTo": [{
+            "Name": "Seq",
+            "Args": {
+                "serverUrl": "http://global_seq:5341",
+                "apiKey": "",
+                "controlLevelSwitch": "$controlSwitch",
+                "eventBodyLimitBytes": null
+            }
+        }
+    ]
+}
+```
 
 ---
 
