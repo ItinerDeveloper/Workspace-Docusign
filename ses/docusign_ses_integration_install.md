@@ -99,14 +99,15 @@ In `Integrations > Connect`:
 
 ### 5.1 `appsettings.json`
 Edit the `appsettings.json` file in the `DocusignIntegration` folder with the following structure:
+> 💡 For reference, see the `docusign_ses_appsettings_sample.json` file located in the GitHub repository.
 
 #### Host Configuration
 ```json
 "Host": {
-  "WebHostUrl": "https://addonhostdnsname/workspace/docusignintegration",
-  "WSUrl": "http://workspacehostdnsname/workspace/api",
+  "WebHostUrl": "https://addonhost/workspace/docusignintegration",
+  "WSUrl": "http://workspacehost/workspace/api",
   "WsApiKey": "test", // API key generated for integration user
-  "HealthCheckBaseUrl": "http://addonhostdnsname", // optional
+  "HealthCheckBaseUrl": "http://addonhost", // optional
   "CustomApiKey": "test",
   "PathBase": "/workspace/docusignintegration",
   "DebugMode": false,
