@@ -47,8 +47,15 @@ Ensure the following files exist in the `DocusignIntegration` folder:
    - **Recycling / Regular Time Interval**: Set to `0` (disables automatic recycling)
    - **Idle Time-out**: Set to `0`
    
-### 3.3 Website Configuration
+### 3.3 Add IIS Web Application - Website Configuration
 Install the DocuSign Integration on the same site as Itiner Workspace (e.g., `Default Website`).
+
+1. Open IIS Manager.
+2. Add a new web application with the following settings:
+   - **Alias**: `DocusignIntegration`
+   - **Application Pool**: Select the previously created pool (e.g., `ItinerWorkspace_DocusignIntegration`)
+   - **Physical Path**: `D:\ItinerWorkspace\DocusignIntegration`
+
 
 ---
 
@@ -198,14 +205,6 @@ Edit the `appsettings.json` file in the `DocusignIntegration` folder with the fo
 }
 ```
 
----
-
-### 5.2 Add IIS Web Application
-1. Open IIS Manager.
-2. Add a new web application with the following settings:
-   - **Alias**: `DocusignIntegration`
-   - **Application Pool**: Select the previously created pool (e.g., `ItinerWorkspace_DocusignIntegration`)
-   - **Physical Path**: `D:\ItinerWorkspace\DocusignIntegration`
 
 ---
 
