@@ -115,8 +115,8 @@ Edit the `appsettings.json` file in the `DocusignIntegration` folder with the fo
   "WSUrl": "http://workspacehost/workspace/api",
   "WsApiKey": "test", // API key generated for integration user
   "HealthCheckBaseUrl": "http://addonhost", // optional
-  "CustomApiKey": "test",
-  "PathBase": "/workspace/docusignintegration",
+  "CustomApiKey": "test", // API key used in the Clients.ApiKey field of the appsettings configuration of Itiner Workspace
+  "PathBase": "/workspace/docusignintegration", // This has to be set according to the path where the addon is installed on IIS
   "DebugMode": false,
   "DisableRequestLog": false,
   "DisableMetadata": true
