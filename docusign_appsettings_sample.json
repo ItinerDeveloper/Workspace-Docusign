@@ -14,7 +14,9 @@
         "ClientId": "Integration Key assigned by DocuSign",
         "AuthServer": "account.docusign.com",
         "ImpersonatedUserID": "User ID of your DocuSign production account",
-        "PrivateKeyFile": "./private.key"
+        "PrivateKeyFile": "./private.key",
+	"QESIdVerificationConfigName": "DocuSign ID Verification for EU Qualified",
+        "AESIdVerificationConfigName": "DocuSign ID Verification for EU Advanced with Liveness"
     },
 
     "Hmac": {
@@ -25,7 +27,7 @@
         "Password": "Set this to valid value"
     },
     "Reference": {
-        "Filter": ["Email"]
+        "Filter": ["Signing"]
     },
     "Serilog": {
         "Using": ["Serilog.Sinks.Seq"],
