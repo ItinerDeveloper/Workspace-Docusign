@@ -134,7 +134,7 @@ Edit the `appsettings.json` file in the `DocusignIntegration` folder with the fo
 "ImpersonatedUserID": "User ID of your DocuSign production account",
 "PrivateKeyFile": "./private.key",
 "QESIdVerificationConfigName": "DocuSign ID Verification for EU Qualified", // Only required if QES signature type is used"
-"AESIdVerificationConfigName": "DocuSign ID Verification for EU Advanced"  // Only required if AES signature type is used"
+"AESIdVerificationConfigName": "DocuSign ID Verification for EU Advanced with Liveness"  // Only required if AES signature type is used"
 },
 "Hmac": {
 "Secret": "HMAC Connect Key secret from DocuSign" // This key must be used as a secret key for the Itiner Workspace Webhook Connection.
