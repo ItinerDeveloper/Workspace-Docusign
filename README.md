@@ -9,15 +9,15 @@
   `/docusignintegration/consent`
 
 ## Description
-The **DocuSign Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It allows workflows to automatically generate and send signing envelopes to one or more recipients. Once all designated signers complete the signing process, the signed document is returned to the addon, which then attaches it to the originating workflow and updates a workflow variable to indicate completion.
+The **DocuSign Addon** is an integration service for the Itiner Workspace platform that facilitates digital document signing through **DocuSign**. It allows workflows to automatically generate and send signing envelopes to one or more recipients. Once all designated signers complete the signing process, the signed document is returned to the addon, which then attaches it to the originating workflow and updates the `digitalSignResult` workflow variable to indicate completion.
 
 This integration supports multiple simultaneous signers. All signer email addresses must be predefined in the workflow through dedicated variables. Additionally, the service supports:
 - **Tagging**: The signed document can be tagged using a value from the `digitalSignAttachmentTag` variable.
 - **Custom Email Messages**: Users can specify a message that will appear in the email sent to the signers using the `digitalSignEmailBody` variable.
 
-The addon supports **Simple (SES)**, **Advanced (AES)**, and **Qualified (QES)** electronic signatures. Signature type is defined using the `digitalSignType` variable. For AES and QES, the name of the recipient must be provided, othervise the signing envelope cannot be created. 
+The addon supports **Simple (SES)**, **Advanced (AES)**, and **Qualified (QES)** electronic signatures. Signature type is defined using the `digitalSignType` variable. For AES and QES, the name of the recipient must be provided, othervise the signing envelope cannot be created. For more information regarding different types of digital signature, visit [Types of Digital Signature: AES, QES, SES, explained](https://www.docusign.com/en-gb/blog/types-digital-signature-aes-qes-ses-explained).
 
-For more information regarding different types of digital signature, visit [Types of Digital Signature: AES, QES, SES, explained](https://www.docusign.com/en-gb/blog/types-digital-signature-aes-qes-ses-explained).
+> 💡 **Asynchronous Operation**: This integration service operates asynchronously. It sends signing envelopes to DocuSign and relies on webhook callbacks to update the workflow once the envelope status changes. The `digitalSignResult` variable is updated and signed documents are attached only after receiving the 'envelope-completed' event from DocuSign.
 
 ### Signing Workflow:
 1. The user uploads a document, and sends it to the DocuSign integration addon via an Export task, along with the signer data.
