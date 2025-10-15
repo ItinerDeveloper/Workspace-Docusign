@@ -14,6 +14,7 @@ The **DocuSign Addon** is an integration service for the Itiner Workspace platfo
 This integration supports multiple simultaneous signers. All signer email addresses must be predefined in the workflow through dedicated variables. Additionally, the service supports:
 - **Tagging**: The signed document can be tagged using a value from the `digitalSignAttachmentTag` variable.
 - **Custom Email Messages**: Users can specify a message that will appear in the email sent to the signers using the `digitalSignEmailBody` variable.
+- **Anchor Tagging**: The addon supports DocuSign's Anchor Tagging functionality. When enabled, DocuSign scans the uploaded document for predefined anchor strings and places signature fields at those locations. In this integration, each signer's anchor string is the name of the corresponding workflow variable used to define their full name (e.g., `digitalSignerName1`, `digitalSignerName2`, etc.). This ensures that the signature field appears exactly where needed without manual placement.
 
 The addon supports **Simple (SES)**, **Advanced (AES)**, and **Qualified (QES)** electronic signatures. Signature type is defined using the `digitalSignType` variable. For AES and QES, the name of the recipient must be provided, othervise the signing envelope cannot be created. For more information regarding different types of digital signature, visit [Types of Digital Signature: AES, QES, SES, explained](https://www.docusign.com/en-gb/blog/types-digital-signature-aes-qes-ses-explained).
 
