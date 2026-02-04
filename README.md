@@ -4,7 +4,7 @@
 **Sending documents for signing**:  
   `/docusignintegration/import/docusign`  
 **Sending signed documents back to Workspace workflows**:  
-  `/docusignintegration/import/envelopecompleted`  
+  `/docusignintegration/import/docusign/envelopecompleted`  
 **Authorizing the integration service to send out envelopes for signing in the name of a user**:  
   `/docusignintegration/consent`
 
@@ -45,3 +45,4 @@ You can find the full list of possible envelope event types in the [DocuSign Con
 ---
 
 This service is part of the **Itiner Workspace integrations**, enabling secure and automated digital signature workflows by leveraging the capabilities of DocuSign.
+
